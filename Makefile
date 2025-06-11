@@ -1,12 +1,12 @@
-GXX = g++
+GXX = gcc
 
-GXX_FLAGS = -g -std=c++17
+GXX_FLAGS = -g
 
 BUILD = build
 OBJ = $(BUILD)/obj
 EXEC = solver
 
-SRC = $(wildcard src/*.cpp)
+SRC = $(wildcard src/*.c)
 OBJS = $(subst src/, $(OBJ)/, $(addsuffix .o, $(basename $(SRC))))
 
 all: clean compile
@@ -16,7 +16,7 @@ compile: $(BUILD)/$(EXEC)
 $(BUILD)/$(EXEC): $(OBJS)
 	$(GXX) $(OBJS) -o $@
 
-$(OBJ)/%.o: src/%.cpp
+$(OBJ)/%.o: src/%.c
 	$(GXX) $(GXX_FLAGS) -c $< -o $@
 
 .PHONY: clean
